@@ -4,11 +4,12 @@ DocQuery helps you find answers in PDFs and check the page behind each answer. U
 
 **Built with** Python, FastAPI, Streamlit, LangChain, Sentence Transformers, FAISS, PyMuPDF, and Google Gemini.
 
-## One-minute demo
+## Try it with your own PDF
 
-1. Run the app and generate the fictional sample PDFs using the commands below.
-2. Add **Orbit Employee Handbook.pdf** in the **Documents** sidebar.
-3. Ask **How much annual leave do employees get?** The top match is **20 days** on **page 1**. Choose **Find passages** for local search or **Ask Gemini** for a cited answer when a Gemini key is configured.
+1. Start DocQuery using the [setup instructions](#run-locally).
+2. In **Documents**, choose one or more PDFs with selectable text and click **Add to workspace**.
+3. Ask your own question about the uploaded document. Use **Find passages** for local search or **Ask Gemini** for a cited answer when a Gemini key is configured.
+4. Expand a result to see the matching passage and its page number.
 
 ## How it works
 
@@ -28,12 +29,11 @@ DocQuery keeps page numbers as it splits PDF text into overlapping passages. Min
 
 ## Run locally
 
-Use 64-bit Python 3.10. From the project folder in Windows Git Bash, install dependencies and generate the fictional sample PDFs.
+Use 64-bit Python 3.10. From the project folder in Windows Git Bash, install the dependencies.
 
 ```bash
 python -m venv .venv
 ./.venv/Scripts/python.exe -m pip install -r requirements.txt
-./.venv/Scripts/python.exe examples/create_demo_pdfs.py
 ```
 
 Run FastAPI in one terminal and Streamlit in another.
@@ -45,7 +45,7 @@ Run FastAPI in one terminal and Streamlit in another.
 ./.venv/Scripts/python.exe -m streamlit run streamlit_app.py --server.address 127.0.0.1
 ```
 
-Open [DocQuery](http://127.0.0.1:8501) and select a PDF from `examples/output/`. On macOS or Linux, use `.venv/bin/python` for the same commands. MiniLM downloads on first use.
+Open [DocQuery](http://127.0.0.1:8501) and upload your own PDF. On macOS or Linux, use `.venv/bin/python` for the same commands. MiniLM downloads on first use.
 
 For optional Gemini answers, copy `.env.example` to `.env`, set `GEMINI_API_KEY` on the server, and restart FastAPI. **Ask Gemini** sends the question and selected passage text to Google. **Find passages** runs locally.
 
